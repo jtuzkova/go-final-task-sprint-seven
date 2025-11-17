@@ -78,7 +78,7 @@ func TestCafeCount(t *testing.T){
 			cafes = strings.Split(body, ",")
 		}
 
-		assert.Equal(t, v.want, len(cafes))
+		assert.Len(t, cafes, v.want)
 	}
 }
 
@@ -106,20 +106,15 @@ func TestCafeSearch(t *testing.T){
 			cafes = strings.Split(body, ",")
 		}
 
-		assert.Equal(t, v.wantCount, len(cafes))
+		assert.Len(t, cafes, v.wantCount)
 
 		search := strings.ToLower(v.search)
 		for _, cafe := range cafes {
 			cafeLower := strings.ToLower(strings.TrimSpace(cafe))
 			strings.Contains(cafeLower, search)
+			assert.Contains(t, cafeLower, search)
 		}
 	}
 }
 
-func min(x, y int) int {
-    if x < y {
-        return x
-    }
-    return y
-}
 
